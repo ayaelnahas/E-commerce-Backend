@@ -1,0 +1,51 @@
+{
+  "products": {
+    "1": {
+      "id": 1,
+      "name": "black bag",
+      "description": "black bag, leather",
+      "price": 50,
+      "discount": 0.5,
+      "isOnSale": true,
+      "tags": [
+        "bag",
+        "accessories"
+      ],
+      "category": "accessories"
+    },
+    "2": {
+      "id": 2,
+      "name": "white bag",
+      "description": "white bag, leather",
+      "price": 70,
+      "discount": 0.3,
+      "isOnSale": false,
+      "tags": [
+        "bag",
+        "accessories"
+      ],
+      "category": "accessories"
+    },
+    "3": {
+      "name": "oil",
+      "id": 3,
+      "category": "baby"
+    },
+    "4": {
+      "name": "hair brush",
+      "id": 4,
+      "category": "baby"
+    },
+    "5": {
+      "name": "laptop",
+      "id": 5,
+      "category": "electronics"
+    },
+    "6": {
+      "name": "TV",
+      "id": 6,
+      "category": "electronics"
+    }
+  },
+  "category": {}
+}
