@@ -1,4 +1,4 @@
-const categoryDatabase = require('../database/categoriesDatabase');
+const categoryDatabase = require('../database/database');
 const getCategoryName = (name) => `categories.${name}`;
 
 module.exports = {

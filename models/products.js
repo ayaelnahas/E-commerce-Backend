@@ -1,4 +1,4 @@
-const productDatabase = require('../database/productsDatabase');
+const productDatabase = require('../database/database');
 
 const getProductKey = ( id ) => `products.${id}`;
 
