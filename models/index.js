@@ -1,5 +1,5 @@
-const products = require('./products');
-const categories = require('./categories');
+const products = require('./products2');
+const categories = require('./categories2');
 
 module.exports = {
   products,

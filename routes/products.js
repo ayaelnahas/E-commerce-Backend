@@ -1,42 +1,51 @@
 const express = require('express');
 const router = express.Router();
-const Products = require('../models/products');
+const createError = require('http-errors');
+const Product = require('../models/products');
 
-router.get('/', (req,res,next) => {
-  let products = Products.getAll();
-  res.send(products);
+
+// if function to be called need some time like the (product.save) better put it async/ await
+router.post('/', async (req, res, next) => {
+  const product = await Product.create(req.body).catch(console.error);
+  if (!product) next(createError(400));
+  else res.send(product);
 });
 
-router.post('/', (req,res,next)=> {
-  let addedProduct = Products.add(req.body);
-  res.send(addedProduct);
+router.get('/', (req, res, next) => {
+  Product.find({}, function (err, docs) {
+    if (err) return next(createError(400, err));
+    res.send(docs);
+  });
 });
 
-router.get('/:productId', (req,res,next) => {
-  let product = Products.getById(req.params.productId);
-  res.send(product);
-});
-
-
-router.get('/:productId/category', (req,res,next) => {
-
-});
-
-
-router.delete('/:productId', (req,res,next) => {
-  let toBeDeleted = Products.delete(req.params.productId, true);
-  res.send(toBeDeleted);
+router.get('/products/:userID', (req, res, next) => {
+  Product.find({addedBy: req.params.userID}, function (err, docs) {
+    if (err) return next(createError(400, err));
+    res.send(docs);
+  });
 });
 
 
-router.patch('/:productId', (req,res,next) => {
-  let updated = Products.patch(req.params.productId, req.body);
-  res.send(updated);
+router.get('/:productId', (req, res, next) => {
+  Product.findById(req.params.productId, function (err, adventure) {
+    if (err) return next(createError(400, err));
+    res.send(adventure);
+  });
 });
 
 
+router.delete('/:productId', (req, res, next) => {
+  Product.findByIdAndRemove(req.params.productId, function (err, deleted) {
+    if (err) return next(createError(400, err));
+    res.send(deleted);
+  })
+});
 
 
+// router.patch('/:productId', (req,res,next) => {
+//   let updated = Products.patch(req.params.productId, req.body);
+//   res.send(updated);
+// });
 
 
 module.exports = router;
